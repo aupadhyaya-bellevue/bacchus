@@ -1,3 +1,6 @@
+import os
+import mysql.connector as mysql
+
 """ 
     Title: bacchus_populate.py
     Group: Bravo
@@ -7,17 +10,16 @@
 """
 
 """ import statements """
-import mysql.connector as mysql
-from mysql.connector import errorcode
 
 """ database config object """
 
-#Creating a Function to create the database
+
+# Creating a Function to create the database
 def database_create():
     db = mysql.connect(
-        user = "bacchus_user",
-        password = "MySQL8IsGreat!",
-        host = "127.0.0.1",
+        user="bacchus_user",
+        password="MySQL8IsGreat!",
+        host="127.0.0.1",
     )
 
     mycursor = db.cursor()
@@ -28,18 +30,19 @@ def database_create():
 
 """ database config object """
 
-#Creating a Function read a .sql file that establishes the empty tables for the database
+
+# Creating a Function read a .sql file that establishes the empty tables for the database
 def database_structure():
     db = mysql.connect(
-        user = "bacchus_user",
-        password = "MySQL8IsGreat!",
-        host = "127.0.0.1",
-        database = "bacchus",
+        user="bacchus_user",
+        password="MySQL8IsGreat!",
+        host="127.0.0.1",
+        database="bacchus",
     )
 
     mycursor = db.cursor()
 
-    with open('C:\\Users\\steff\\Downloads\\bacchus_table_create.sql') as f:
+    with open(os.path.dirname(__file__) + '/../dbscripts/bacchus_table_create.sql') as f:
         mycursor.execute(f.read(), multi=True)
 
 
