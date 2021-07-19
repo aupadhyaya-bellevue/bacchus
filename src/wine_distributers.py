@@ -26,6 +26,9 @@ sql_all_distributors = "SELECT distributors_id, distributors_name FROM distribut
 cursor.execute(sql_all_distributors)
 distributors = cursor.fetchall()
 
+# Print report title
+print("-- Report for which distributor carries which wine?-- \n")
+
 # Iterate through all the distributors and print wines they carry
 for distributor in distributors:
     # Retrieve all the wine names current distributor has ever ordered
